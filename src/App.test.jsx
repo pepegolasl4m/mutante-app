@@ -29,7 +29,7 @@ describe('App', () => {
   it('navega a Combate al hacer clic en el tab', () => {
     render(<App />)
     fireEvent.click(screen.getByRole('button', { name: /combate/i }))
-    expect(screen.getByText(/combate.*próximamente/i)).toBeInTheDocument()
+    expect(screen.getByLabelText('Añadir combatiente manual')).toBeInTheDocument()
   })
 
   it('el tab activo tiene aria-current="page"', () => {

@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import TiradaDados from './components/TiradaDados/TiradaDados'
 import GestorFichas from './components/Fichas/GestorFichas'
+import PanelCombate from './components/Combate/PanelCombate'
 
 const TABS = [
   { id: 'tiradas', label: 'Tiradas', icono: '🎲', componente: <TiradaDados /> },
   { id: 'fichas',  label: 'Fichas',  icono: '📋', componente: <GestorFichas /> },
-  { id: 'combate', label: 'Combate', icono: '⚔️',  componente: null },
+  { id: 'combate', label: 'Combate', icono: '⚔️',  componente: <PanelCombate /> },
 ]
 
 function Proximamente({ label }) {
