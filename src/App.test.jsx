@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import App from './App'
 
 describe('App', () => {
@@ -8,15 +8,33 @@ describe('App', () => {
     expect(screen.getByText('MUTANTE')).toBeInTheDocument()
   })
 
-  it('muestra los tres módulos principales', () => {
+  it('muestra los tres tabs de navegación', () => {
     render(<App />)
-    expect(screen.getByText('Fichas')).toBeInTheDocument()
-    expect(screen.getByText('Tiradas')).toBeInTheDocument()
-    expect(screen.getByText('Combate')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /tiradas/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /fichas/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /combate/i })).toBeInTheDocument()
   })
 
-  it('muestra el subtítulo de estado', () => {
+  it('muestra la calculadora de tiradas por defecto', () => {
     render(<App />)
-    expect(screen.getByText(/en construcción/i)).toBeInTheDocument()
+    expect(screen.getByText(/calculadora de tiradas/i)).toBeInTheDocument()
+  })
+
+  it('navega a Fichas al hacer clic en el tab', () => {
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: /fichas/i }))
+    expect(screen.getByText(/fichas.*próximamente/i)).toBeInTheDocument()
+  })
+
+  it('navega a Combate al hacer clic en el tab', () => {
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: /combate/i }))
+    expect(screen.getByText(/combate.*próximamente/i)).toBeInTheDocument()
+  })
+
+  it('el tab activo tiene aria-current="page"', () => {
+    render(<App />)
+    const tabTiradas = screen.getByRole('button', { name: /tiradas/i })
+    expect(tabTiradas).toHaveAttribute('aria-current', 'page')
   })
 })
