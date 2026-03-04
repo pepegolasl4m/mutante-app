@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import TiradaDados from './components/TiradaDados/TiradaDados'
+import GestorFichas from './components/Fichas/GestorFichas'
 
 const TABS = [
   { id: 'tiradas', label: 'Tiradas', icono: '🎲', componente: <TiradaDados /> },
-  { id: 'fichas',  label: 'Fichas',  icono: '📋', componente: null },
+  { id: 'fichas',  label: 'Fichas',  icono: '📋', componente: <GestorFichas /> },
   { id: 'combate', label: 'Combate', icono: '⚔️',  componente: null },
 ]
 

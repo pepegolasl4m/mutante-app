@@ -23,7 +23,7 @@ describe('App', () => {
   it('navega a Fichas al hacer clic en el tab', () => {
     render(<App />)
     fireEvent.click(screen.getByRole('button', { name: /fichas/i }))
-    expect(screen.getByText(/fichas.*próximamente/i)).toBeInTheDocument()
+    expect(screen.getByLabelText('Crear ficha de jugador')).toBeInTheDocument()
   })
 
   it('navega a Combate al hacer clic en el tab', () => {
